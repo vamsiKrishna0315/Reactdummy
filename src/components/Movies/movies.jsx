@@ -14,8 +14,16 @@ class Movies extends Component {
 
         // this.setState({ movies: movies }) in modern js when both properties names are equal we can pass as 1
     };
+    
     render() { 
-        return <table className="table container">
+        const {length: count} = this.state.movies;
+        if(count === 0) return <p className='container'>There are no movies</p>;
+        return(  
+            <React.Fragment>
+
+                <p className='container'>Total no of movies available: {count}</p>
+        
+        <table className="table container">
             <thead>
                 <tr >
                     <th>Title</th>
@@ -40,7 +48,9 @@ class Movies extends Component {
                 </tr> ))}
                 
             </tbody>
-        </table>;
+        </table>
+            </React.Fragment> 
+            );     
     }
 }
 export default  Movies;
