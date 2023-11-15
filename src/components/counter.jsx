@@ -4,7 +4,8 @@ class Counter extends Component {
     
     state = {
         // count: 0,
-        value: this.props.value
+        value: this.props.counter.value,
+        InitialValue: this.props.counter.value
     };
 
     // constructor(){
@@ -25,7 +26,7 @@ class Counter extends Component {
     }
 
     resetCounter = () => {
-        this.setState({value: this.state.value * 0});
+        this.setState({value: this.props.counter.value});
     }
 
     
@@ -36,7 +37,7 @@ class Counter extends Component {
                         <button onClick={this.handleIncrement} className='btn btn-secondary btn-sm m-2'> + </button>
                         <button onClick={this.handleDecrement} className= 'btn btn-danger btn-sm m-2'> - </button>
                         <button onClick={this.resetCounter} className = 'btn btn-warning btn-sm'>RESET</button>
-                        <button onClick= {(counterId) => this.props.onDelete(this.props.id)} className="btn btn-danger btn-sm m-2">DELETE</button>
+                        <button onClick= {() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-sm m-2">DELETE</button>
             </div>
         );
     }

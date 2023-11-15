@@ -9,7 +9,7 @@ class Counter2 extends Component {
             <React.Fragment>
                         <span>{this.formatCount()}</span>
                         <button>Increment</button>
-            </React.Fragment>
+            </React.Fragment>   //notes-- we use react.fragment to avoid unneccasary divs we can use <>.... </> shorthand for react.fragment 
         );
     }
 
