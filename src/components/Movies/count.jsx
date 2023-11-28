@@ -6,7 +6,6 @@ state = {
 }
 
 class count extends Component {
-    state = {  } 
     render() {  
         return (
             <header>

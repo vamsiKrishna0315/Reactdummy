@@ -13,3 +13,6 @@ p{
     margin-left: 88px;
     border: 2px solid black;
 }
+.container{
+    max-width:none;
+}
