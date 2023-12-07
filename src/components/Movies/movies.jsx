@@ -34,8 +34,6 @@ class Movies extends Component {
     };
 
     handleLike = (movie) => {
-        console.log('Here in Like', movie);
-
         const movies = [...this.state.movies];
         const index = movies.indexOf(movie);
         movies[index] = { ...movies[index] };
@@ -73,7 +71,7 @@ class Movies extends Component {
 
     render() {
         const { length: count } = this.state.movies;
-
+        const totalStocks = this.state.movies.reduce((sum, movie) => sum + movie.numberInStock, 0);
         const
          {  pageSize,
             currentPage, 
@@ -92,6 +90,7 @@ class Movies extends Component {
         //  console.log(sortColumn.path)
         //  console.log(sortColumn.order)
         const movies = paginate(sorted, currentPage, pageSize);
+        const totalStocksPerPage = movies.reduce((sum, movie) => sum + movie.numberInStock, 0);
         return (
             <div className='row'>
                 <div className="col-3">
@@ -99,6 +98,8 @@ class Movies extends Component {
                         selectedItem={this.state.selectedGenre}
                         onItemSelect={this.handleGenreSelect} /></div>
                 <div className="col"> <p className='container'>Total no of movies available: {filtered.length}</p>
+                <p className='container'>  Total no of Movies In Stock: {totalStocks}</p>
+                <p className='container'>  Total no of Movies In Stock for this page: {totalStocksPerPage}</p>
 
                 <MoviesTable
                 movies = {movies}
