@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Like from './Movies/subComponents/like';
 import Sale from './Movies/subComponents/sale'
 
-
-const MoviesTable = (props) => {
-    const { movies, onDelete, onLike,onSale, onSort } = props;
+class MoviesTable extends Component {
+   
+    render() { 
+        const { movies, onDelete, onLike,onSale, onSort } = this.props;
     return (    
         <table className="table container">
                         <thead>
@@ -41,6 +42,8 @@ const MoviesTable = (props) => {
                         </tbody>
                     </table>
     );
+        
+    }
 }
  
 export default MoviesTable;
