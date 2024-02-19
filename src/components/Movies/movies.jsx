@@ -34,6 +34,7 @@ class Movies extends Component {
     };
 
     handleLike = (movie) => {
+        console.log("handleLike Called")
         const movies = [...this.state.movies];
         const index = movies.indexOf(movie);
         movies[index] = { ...movies[index] };
@@ -107,8 +108,6 @@ class Movies extends Component {
                         pageSize={pageSize}
                         currentPage={currentPage}
                         onPageChange={this.handlePageChange} /></div>
-
-
             </div>
         );
     }
