@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getMovies } from '../../services/fakeMovieService';
 
-state = {
+const state = {
     movies: getMovies()
 }
 
