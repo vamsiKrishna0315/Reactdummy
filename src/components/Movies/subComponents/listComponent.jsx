@@ -1,13 +1,15 @@
+// ListComponent.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const ListComponent = ({ menuNames }) => {
+const ListComponent = ({ menuItems }) => {
   return (
     <>
-      {menuNames.map((menuName, index) => (
+      {menuItems.map((menuItem, index) => (
         <li key={index} className="nav-item active">
-          <a className="nav-link" href="#">
-            {menuName} <span className="sr-only">(current)</span>
-          </a>
+          <Link to={menuItem.to} className="nav-link">
+            {menuItem.menuName} <span className="sr-only">(current)</span>
+          </Link>
         </li>
       ))}
     </>

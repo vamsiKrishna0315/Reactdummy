@@ -3,15 +3,18 @@ import ListComponent from './listComponent';
 
 class NavBar extends Component {
   state = {
-    menuNames: ['Home', 'Analytics', 'Rent', 'Add Movie']
+    menuItems: [
+      { menuName: 'Home', to: '/' },
+      { menuName: 'Analytics', to: '/analytics' },
+      { menuName: 'Rent', to: '/rent' },
+      { menuName: 'Add Movie', to: '/addmovie' }
+    ]
   };
 
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">
           Movies Back End
-        </a>
         <button
           className="navbar-toggler"
           type="button"
@@ -25,7 +28,7 @@ class NavBar extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <ListComponent menuNames={this.state.menuNames} />
+            <ListComponent menuItems={this.state.menuItems} />
           </ul>
         </div>
       </nav>
