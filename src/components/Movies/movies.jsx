@@ -85,6 +85,10 @@ class Movies extends Component {
         //  console.log(sortColumn.order)
         const movies = paginate(sorted, currentPage, pageSize);
         const totalStocksPerPage = movies.reduce((sum, movie) => sum + movie.numberInStock, 0);
+        // function getAnalyticsData(filteredLength, totalStocks) {
+        //     sessionStorage.setItem('total_no_of_movies', filteredLength);
+        //     sessionStorage.setItem('total_movies_in_stock', totalStocks);
+        //   }
         return (
             <div className='row'>
                 <div className="col-3">
