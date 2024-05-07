@@ -4,7 +4,8 @@ import Movies from './components/Movies/movies';
 import NavBar from './components/Movies/subComponents/navbar';
 import Analytics from './components/Movies/subComponents/analytics';
 import Rent from './components/Movies/subComponents/rent';
-import AddMovie from './components/Movies/subComponents/addmovie';
+import LoginForm from './components/Movies/subComponents/loginForm';
+import Product from './components/Movies/subComponents/product';
 import './App.css';
 
 class App extends Component {
@@ -15,9 +16,10 @@ class App extends Component {
           <NavBar />
           <div className="content">
             <Switch>
+              <Route path="/product" component={Product} />
               <Route path="/analytics" component={Analytics} />
               <Route path="/rent" component={Rent} />
-              <Route path="/addmovie" component={AddMovie} />
+              <Route path="/loginform" component={LoginForm} />
               <Route path="/" component={Movies} />
             </Switch>
           </div>

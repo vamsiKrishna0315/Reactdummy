@@ -7,7 +7,8 @@ class NavBar extends Component {
       { menuName: 'Home', to: '/' },
       { menuName: 'Analytics', to: '/analytics' },
       { menuName: 'Rent', to: '/rent' },
-      { menuName: 'Add Movie', to: '/addmovie' }
+      { menuName: 'Login Form', to: '/loginform' },
+      { menuName: 'Product', to: '/product' }
     ]
   };
 
