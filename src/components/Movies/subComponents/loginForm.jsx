@@ -1,45 +1,113 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
+import Joi from "joi-browser";
 class LoginForm extends Component {
-    state ={
-        account:{username: '', password: ''}
-    }
-       handleSubmit = e => {
-        e.preventDefault();
+  state = {
+    account: { username: "", password: "" },
+    errors: {},
+  };
 
-        const username  = this.username.current.value;
-        const password  = this.password.current.value;
-    };
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-    handleChange = ({currentTarget: input}) =>{
-        const account = {...this.state.account};
-        // account.username = e.currenttarget.value;
-        account[input.name] =input.value;
-        this.setState({ account });
+    const errors = this.validate();
+    this.setState({ errors });
+
+    if (Object.keys(errors).length > 0) {
+      return;
     }
-    render() { 
-        const {account} = this.state;
-        return (<div>
-           <form onSubmit={this.handleSubmit}>
-            <div className='form-group'>
-                <label for="username">Email Id: </label>
-                <input 
-                autoFocus
-                value= {account.username}
-                onChange ={this.handleChange}
-                name= "username"
-                className='form-control-md' type='text' id='username' placeholder='Enter Your Email'>
-                </input>
-            </div>
-            <div className='form-group'>
-                <label for="password">Password: </label>
-                <input value= {account.password} name= "password" className='form-control-md' type='password' id='password' placeholder='Enter Your Password'>
-                </input>
-            </div>
-            <button type='submit' className='btn btn-primary'>Submit</button>
-           </form>
-        </div>);
+  };
+
+  schema = {
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+  };
+
+  validate = () => {
+    // const {options} = abortEarly:false;
+    const result = Joi.validate(this.state.account, this.schema, {
+      abortEarly: false,
+    });
+    console.log(result);
+    const errors = {};
+    const { account } = this.state;
+    if (account.username.trim() === "")
+      errors.username = "Username is required";
+    if (account.password.trim() === "")
+      errors.password = "Password is required";
+    return errors;
+  };
+
+  handleChange = ({ currentTarget: input }) => {
+    const { name, value } = input;
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(name, value);
+
+    if (errorMessage) {
+      errors[input.name] = errorMessage;
+    } else {
+      delete errors[input.name];
     }
+
+    const account = { ...this.state.account };
+    account[input.name] = input.value;
+    this.setState({ account, errors });
+  };
+
+  validateProperty = (name, value) => {
+    if (name === "username") {
+      if (value.trim() === "") {
+        return "Username is required";
+      }
+    }
+    if (name === "password") {
+      if (value.trim() === "") {
+        return "Password is required";
+      }
+    }
+  };
+
+  render() {
+    const { account, errors } = this.state;
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">User Name</label>
+            <input
+              value={account.username}
+              name="username"
+              id="username"
+              type="text"
+              className="form-control"
+              placeholder="Enter the User Name"
+              onChange={this.handleChange}
+            />
+            {errors.username && (
+              <div className="alert alert-danger">{errors.username}</div>
+            )}
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              value={account.password}
+              name="password"
+              id="password"
+              type="password"
+              className="form-control"
+              placeholder="Enter the Your Password"
+              onChange={this.handleChange}
+            />
+            {errors.password && (
+              <div className="alert alert-danger">{errors.password}</div>
+            )}
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </div>
+    );
+  }
 }
- 
+
 export default LoginForm;
